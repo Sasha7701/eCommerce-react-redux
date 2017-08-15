@@ -1,0 +1,29 @@
+.cartCount {
+	display: inline-block;
+	margin: 10px auto;
+  margin-left: 30px;
+	width: 100%;
+  padding: 15px;
+}
+.cart_info {
+	display: inline-block;
+  margin: 40px;
+}
+.watchImg {
+	width: 230px;
+}
+.name, .price  {
+	margin: 10px 25px 15px 10px;
+	display: block;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+	color: gray;
+}
+.total {
+	display: block;
+}
+.countTotal, .cart-total-price {
+  font-size: 18px;
+  font-weight: 400;
+}

@@ -1,0 +1,64 @@
+.item {
+	padding: 20px;
+}
+.specs {
+  display: inline-table;
+
+  font-size: 12px;
+}
+.label {
+	display: table-cell;
+  font-size: 12px;
+	font-weight: bold;
+}
+.value {
+	display: table-cell;
+}
+
+.watch-name {
+	font-size: 25px;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+// .item-image {
+// 	display: table;
+//
+// 	padding: 5px;
+//   margin: auto;
+// }
+
+// .img {
+// 	height: 400px;
+//    cursor:zoom-in;
+// }
+.item-image{
+				display: inline-flex;
+				overflow: hidden;
+        border-radius: 2px 2px 0 0;
+        max-height: 450px;
+.img {
+cursor:zoom-in;
+						margin: auto;
+						width: 30%;
+            height: auto;
+            transition: transform 300ms ease-in;
+            transform: scale(0.8);
+            &:hover{
+                transform: scale(1.2);
+            }
+					}
+}
+.description {
+	// display: block;
+	letter-spacing: 0.02em;
+	width: 420px;
+	line-height: 1.4em;
+  // margin: 55px auto;
+}
+
+.text {
+	display: table;
+	margin: 55px auto;
+  padding: 10px;
+}
