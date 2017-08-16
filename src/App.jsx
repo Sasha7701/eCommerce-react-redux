@@ -1,5 +1,6 @@
 import "./App.scss";
 import React from "react";
+import { Provider } from "react-redux";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navigation from "components/Navigation";
 import Welcome from "pages/Welcome";
@@ -9,6 +10,11 @@ import Products from "pages/Products";
 import Success from "pages/Success";
 import FourOhFour from "pages/404";
 import PRODUCT from "json/products.json";
+import { createStore } from "redux";
+import reducers from "./reducers";
+
+
+const store = createStore(reducers);
 
 class App extends React.Component {
 	state = {
@@ -39,45 +45,46 @@ _handleAdd = (itemId) => {
 render() {
 	const { products, cart, cartCount } = this.state;
 	return (
-		<BrowserRouter>
-			<div>
-				<Navigation cartCount={ this.state.cartCount }/>
-				<Switch>
-					<Route exact path="/" component={Welcome} />
-					<Route exact path="/products" render={(props) => {
-						return (
-							<Products {...props}
-								products={products}
-							/>
-						);
-					}}
-					/>
+  	<Provider store={store}>
+			<BrowserRouter>
+				<div>
+	 			<Navigation cartCount={ this.state.cartCount }/>
+	 			<Switch>
+	 				<Route exact path="/" component={Welcome} />
+		 			<Route exact path="/products" render={(props) => {
+		 				return (
+		 					<Products {...props}
+									products={products}
+		 					/>
+		 				);
+		 			}}
+		 			/>
 
-					<Route exact path="/item/:itemId" render={(props) => {
-
-						return (
-							<Item
-					 handleAdd={this._handleAdd}
-					 item={this._getProduct(props.match.params.itemId)}
-				 		/>
+		 			<Route exact path="/item/:itemId" render={(props) => {
+							return (
+								<Item
+									handleAdd={this._handleAdd}
+									item={this._getProduct(props.match.params.itemId)}
+				 		 />
 					 );
 				 }}
-					/>
-					<Route exact path="/cart" render={(props) => {
-						return (
-							<Cart
-								cart={cart}
-								cartCount={cartCount}
-							/>
+						/>
+						<Route exact path="/cart" render={(props) => {
+							return (
+								<Cart
+									cart={cart}
+									cartCount={cartCount}
+								/>
 					 );
-					}}
-					/>
+						}}
+						/>
 
-					<Route exact path="/success" component={Success} />
-					<Route path="*" component={FourOhFour} />
-				</Switch>
-			</div>
-		</BrowserRouter>
+						<Route exact path="/success" component={Success} />
+						<Route path="*" component={FourOhFour} />
+					</Switch>
+				</div>
+			</BrowserRouter>
+		</Provider>
 	);
 }
 }

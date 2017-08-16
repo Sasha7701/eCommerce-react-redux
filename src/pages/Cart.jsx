@@ -10,7 +10,7 @@ class Cart extends Component {
 		this.state = {
 
 		};
-}
+	}
 
 	render() {
 		const { cart, cartCount } = this.props;
