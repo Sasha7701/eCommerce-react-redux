@@ -10,11 +10,11 @@ import Products from "pages/Products";
 import Success from "pages/Success";
 import FourOhFour from "pages/404";
 import PRODUCT from "json/products.json";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import reducers from "./reducers";
+import thunk from "redux-thunk";
 
-
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(thunk));
 
 class App extends React.Component {
 	state = {
@@ -28,8 +28,7 @@ class App extends React.Component {
 		 		return item.id === itemId ? item : prev;
 				});
 			}
-
-_handleAdd = (itemId) => {
+			_handleAdd = (itemId) => {
 	// let cart = this.state.cart.concat([ev.target.value])
 	const { products, cart } = this.state;
 	this.setState({
@@ -51,30 +50,20 @@ render() {
 	 			<Navigation cartCount={ this.state.cartCount }/>
 	 			<Switch>
 	 				<Route exact path="/" component={Welcome} />
-		 			<Route exact path="/products" render={(props) => {
-		 				return (
-		 					<Products {...props}
-									products={products}
-		 					/>
+		 			<Route exact path="/products" component={Products} />
 		 				);
 		 			}}
-		 			/>
-
-		 			<Route exact path="/item/:itemId" render={(props) => {
-							return (
-								<Item
-									handleAdd={this._handleAdd}
-									item={this._getProduct(props.match.params.itemId)}
-				 		 />
-					 );
-				 }}
+		 			<Route exact path="/item/:itemId" component={Item}
+					// => {
+				// 			return (
+				// 				<Item
+				// 					handleAdd={this._handleAdd}
+				// 					item={this._getProduct(props.match.params.itemId)}
+				//  		 />
+				// 	 );
+				//  }}
 						/>
-						<Route exact path="/cart" render={(props) => {
-							return (
-								<Cart
-									cart={cart}
-									cartCount={cartCount}
-								/>
+						<Route exact path="/cart" component={Cart} />
 					 );
 						}}
 						/>
