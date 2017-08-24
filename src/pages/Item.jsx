@@ -1,60 +1,55 @@
 import "./Item.scss";
 import React, { Component } from "react";
-import PRODUCTS from "json/products.json";
+// import PRODUCTS from "json/products.json";
 import EmptyCart from "components/Checkout";
+import { addToCart } from "actions/cart";
 import { getOne } from "actions/products";
 import { connect } from "react-redux";
 // import { connect } from "redux-thunk";
 
 class Item extends Component {
 	componentDidMount() {
-		this.props.getOne(this.props.itemId);
+		this.props.getOne(this.props.productId);
 	}
 
-	// constructor(props) {
-	// 	super(props);
-	// 	this.state = {
-	// 	};
-	// }
-
-	_handleAddCart = (itemId) => {
-		this.props.handleAdd(this.props.item.id);
+	_handleAddCart = (product) => {
+		this.props.addToCart(this.props.product);
 	}
 
 	render() {
 		 // const item = PRODUCTS[this.state.itemId];
-		 console.log(item,"ffffffffffffffffffff");
-		const { item, handleAdd } = this.props;
-		if (!item) {
+		 console.log(product,"ffffffffffffffffffff");
+		const { product, error, cart, cartCount } = this.props;
+		if (!product) {
 			 return <p>Loading....</p>;
 		 }
 		 else {
 		// console.log(PRODUCTS[this.state.itemId].name);
-		 console.log(item, "ssssssssssss");
+		 console.log(product, "ssssssssssss");
 		 return (
 			 <div className="item">
 				 {/* <h1>{this.state.itemId}</h1> */}
-				 <h1 className = "watch-name">{item.name}</h1>
+				 <h1 className = "watch-name">{product.name}</h1>
 				 <div className = "item-image">
-				 {item.images.map((item) => {
+				 {product.images.map((product) => {
 				 return ([
-					 <img src = {item.medium} className = "img"/>,
+					 <img src = {product.medium} className = "img"/>,
 					 ]);
 			  })}
 					</div>
-					<button className="addCart" onClick={this._handleAddCart} value={item.id}>
+					<button className="addCart" onClick={this._handleAddCart} value={product.id}>
 				add Cart
 			  </button>
 					<div className = "text">
-				 <p className = "description">{item.description}</p>
-				 <p>{item.category}</p>
-				 <h1>${item.price}</h1>
+				 <p className = "description">{product.description}</p>
+				 <p>{product.category}</p>
+				 <h1>${product.price}</h1>
 			 </div>
 					<div className = "specs">
-						{item.specs.map((item) => {
+						{product.specs.map((product) => {
 							return ([
-					 	<div className="value">{item.value}</div>,
-								<div className="label">{item.label}:</div>,
+					 	<div className="value">{product.value}</div>,
+								<div className="label">{product.label}:</div>,
 					 ]);
 				 })}
 			 		</div>
@@ -65,12 +60,14 @@ class Item extends Component {
 }
 
 function mapStateToProps(state, props) {
-	const { activeProduct } = state.products;
+	const { activeProduct, error } = state.products;
 	return {
-		itemId: props.match.params.itemId,
-		item: activeProduct,
-
+		productId: props.match.params.productId,
+		product: activeProduct,
+		error,
+		cart: state.cart,
+		cartCount: state.cart,
 	};
 }
 
-export default connect(mapStateToProps, { getOne })(Item);
+export default connect(mapStateToProps, { getOne, addToCart })(Item);

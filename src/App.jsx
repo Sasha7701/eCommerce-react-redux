@@ -17,55 +17,46 @@ import thunk from "redux-thunk";
 const store = createStore(reducers, applyMiddleware(thunk));
 
 class App extends React.Component {
-	state = {
-			 products: PRODUCT,
-			 cart: [],
-			 cartCount: 0,
-		 };
+	// state = {
+	// 		 products: PRODUCT,
+	// 		 cart: [],
+	// 		 cartCount: 0,
+	// 	 };
+	//
+	// 	 _getProduct = (productId) => {
+	// 	 	return this.state.products.reduce((prev, product) => {
+	// 	 		return product.id === productId ? product : prev;
+	// 			});
+	// 		}
+	// 		_addToCart = (productId) => {
+	// 			// let cart = this.state.cart.concat([ev.target.value])
+	// 			const { products, cart } = this.state;
+	// 			this.setState({
+	// 				cart: [...cart, this._getProduct(productId)],
+	// 				cartCount: cart.length + 1,
+	// 			});
+	// 		};
+			// addCart(ev) {
+			// 	this.setState({ cart: this.state.cart });
+			// }
 
-		 _getProduct = (itemId) => {
-		 	return this.state.products.reduce((prev, item) => {
-		 		return item.id === itemId ? item : prev;
-				});
-			}
-			_handleAdd = (itemId) => {
-	// let cart = this.state.cart.concat([ev.target.value])
-	const { products, cart } = this.state;
-	this.setState({
-		cart: [...cart, this._getProduct(itemId)],
-		cartCount: cart.length + 1,
-	});
-};
-// addCart(ev) {
-// 	this.setState({ cart: this.state.cart });
-// }
 
-
-render() {
-	const { products, cart, cartCount } = this.state;
-	return (
-  	<Provider store={store}>
-			<BrowserRouter>
-				<div>
-	 			<Navigation cartCount={ this.state.cartCount }/>
-	 			<Switch>
+			render() {
+				// const { products, cart, cartCount } = this.state;
+				return (
+  			<Provider store={store}>
+						<BrowserRouter>
+							<div>
+	 			{/* <Navigation cartCount={ this.state.cartCount }/> */}
+				<Navigation/>
+				<Switch>
 	 				<Route exact path="/" component={Welcome} />
 		 			<Route exact path="/products" component={Products} />
-		 				);
+					<Route exact path="/product/:productId" component={Item}/>
+					<Route exact path="/cart" component={Cart} />
+						);
 		 			}}
-		 			<Route exact path="/item/:itemId" component={Item}
-					// => {
-				// 			return (
-				// 				<Item
-				// 					handleAdd={this._handleAdd}
-				// 					item={this._getProduct(props.match.params.itemId)}
-				//  		 />
-				// 	 );
-				//  }}
-						/>
-						<Route exact path="/cart" component={Cart} />
-					 );
-						}}
+
 						/>
 
 						<Route exact path="/success" component={Success} />

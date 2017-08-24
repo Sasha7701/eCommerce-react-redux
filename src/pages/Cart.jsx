@@ -2,7 +2,7 @@ import "./Cart.scss";
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
-
+import { connect } from "react-redux";
 
 class Cart extends Component {
 	 constructor(props) {
@@ -43,4 +43,13 @@ class Cart extends Component {
 		);
 	}
 }
-export default Cart;
+
+function mapStateToProps(state, props) {
+	return {
+		cartCount: state.cart.cartCount,
+		cart: state.cart.cart,
+	};
+}
+
+
+export default connect (mapStateToProps) (Cart);
