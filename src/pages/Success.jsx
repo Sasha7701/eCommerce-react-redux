@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Checkout from "../components/Checkout";
+import Checkout from "../components/CheckoutForm";
 
 class Success extends Component {
 	render() {

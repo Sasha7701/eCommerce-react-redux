@@ -18,6 +18,8 @@ class Cart extends Component {
 			return prev + parseFloat(item.price);
 		},0);
 
+		if (cartCount > 0) {
+
 		return (
 			<div className="cartCount">
 
@@ -35,13 +37,23 @@ class Cart extends Component {
 			 <p className="cart-total-price">Total Price: { totalPrice }</p>
 		 </div>
 		 <div className="cart-checkout-button">
-	 						<Link to= "/success">
+	 						<Link to= "/checkout">
 	 							<button> CHECKOUT </button>
 	 						</Link>
 	 					</div>
 			</div>
 		);
+}
+	else {
+		return (
+<div>
+			<h1 className = "emptyCart">CART IS EMPTY</h1>
+			<p className="cart-total-price">Total Price {totalPrice}</p>
+</div>
+		);
 	}
+}
+
 }
 
 function mapStateToProps(state, props) {

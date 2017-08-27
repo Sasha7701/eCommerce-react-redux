@@ -1,7 +1,6 @@
 import "./Item.scss";
 import React, { Component } from "react";
 // import PRODUCTS from "json/products.json";
-import EmptyCart from "components/Checkout";
 import { addToCart } from "actions/cart";
 import { getOne } from "actions/products";
 import { connect } from "react-redux";

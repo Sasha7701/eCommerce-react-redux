@@ -6,7 +6,7 @@ import { getAll } from "actions/products";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-class Gallery extends Component {
+class Products extends Component {
 	componentDidMount() {
 		this.props.getAll();
 	}
@@ -60,7 +60,7 @@ function mapStateToProps(state, props) {
 	};
 }
 
-export default connect(mapStateToProps, { getAll }) (Gallery);
+export default connect(mapStateToProps, { getAll }) (Products);
 // class Products extends Component {
 // 	componentDidMount() {
 // 		this.props.getAll();
