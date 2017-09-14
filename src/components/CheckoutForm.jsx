@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { submitOrder } from "actions/checkout";
+import { Link } from "react-router-dom";
 
 class CheckoutForm extends Component {
 	constructor(props) {
@@ -23,11 +24,13 @@ class CheckoutForm extends Component {
 
 	_handleSubmit = (ev) => {
 		ev.preventDefault();
+const { cart, cartTotal } = this.props;
 		this.props.submitOrder(this.state);
 	}
 
 	render() {
-		const { name, address, zipCode, city, state, error, value  } = this.state;
+		const { name, address, zipCode, city, state, value  } = this.state;
+		const { error, orderSuccess, orderFailure, cart, cartCount } = this.props;
 		const options = [
 			{ key:'AL', text:'Alabama', value:'AL' },
 			{ key:'AK', text:'Alaska', value:'AK' },
@@ -83,6 +86,18 @@ class CheckoutForm extends Component {
 			{ key:'WY', text:'Wyoming', value:'WY' },
 		];
 
+		let message;
+
+		if (orderSuccess) {
+			message = (<div className = "OrderFormSuccess">
+				<Link to= "/products"> <p>Your Order has been submitted successfully! Please feel free to continue shopping here if you'd like.</p></Link>
+			</div>);
+		}
+
+		if (orderFailure) {
+			message = <div className = "OrderFormFailure"> { error } </div>;
+		}
+
   		const { cartTotal } = this.props;
     		return (
     			<div className="checkout-form-container">
@@ -112,7 +127,7 @@ class CheckoutForm extends Component {
     						</div>
     						<div className="button-field">
     							<label name="zipcode">Zip code</label>
-    							<input type="text" name="zipcode" onChange={this._handleChange} required></input>
+    							<input type="text" name="zipCode" onChange={this._handleChange} required></input>
     						</div>
     						<div className="button-field-submit hidden">
     							<button type="submit" onSubmit={this._handleSubmit}>Purchase</button>
@@ -128,7 +143,11 @@ function mapStateToProps(state, props) {
   return {
 		// cart: state.cart.cart,
 		// cartIds: state.cart.productIds,
-
+		cartTotal: state.cart.cartTotal,
+		error: state.checkout.error,
+		orderSuccess: state.checkout.orderSuccess,
+		orderFailure: state.checkout.orderFailure,
+		cart: state.cart.cart,
 	};
 }
 

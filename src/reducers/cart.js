@@ -17,6 +17,12 @@ function cartReducer(state = INITIAL_STATE, action) {
 			...state,
 			error: action.error,
 		};
+	case "SUBMIT_ORDER_SUCCESS":
+		return {
+			...state,
+			cart: [],
+			cartTotalItems:0,
+		};
 	default:
 		return state;
 	}

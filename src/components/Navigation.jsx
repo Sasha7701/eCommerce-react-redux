@@ -2,6 +2,7 @@ import "./Navigation.scss";
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 class Navigation extends Component {
 	render() {
@@ -14,7 +15,7 @@ class Navigation extends Component {
 			text: "Products",
 		}, {
 			to: "/cart",
-			text: "Cart",
+			text: "Cart" + " " + cartCount,
 		}];
 
 		return (
@@ -39,6 +40,10 @@ class Navigation extends Component {
 		);
 	}
 }
+
+Navigation.propTypes = {
+	cartTotalItems: PropTypes.number,
+};
 
 function mapStateToProps(state, props) {
 	return {

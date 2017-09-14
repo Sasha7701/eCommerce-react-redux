@@ -20,8 +20,9 @@ API.post("/orders", {
 	 				address: order.address,
 	 				city: order.city,
 	 				state: order.state,
-					zipcode: order.zipcode,
-	 				products: productIds
+					zipcode: order.zipCode,
+	 				products: productIds,
+
 				},
 				})
 				.then((res) => {

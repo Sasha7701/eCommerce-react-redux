@@ -14,6 +14,8 @@ function checkoutReduced(state = INITIAL_STATE, action) {
 		return {
 			...state,
 			order: action.order,
+			orderSuccess: true,
+			orderFailure: false,
 		};
 
 
@@ -24,6 +26,8 @@ function checkoutReduced(state = INITIAL_STATE, action) {
 		return {
 			...state,
 			error: action.error,
+			orderSuccess: false,
+			orderFailure: true,
 		};
 
 	default:
