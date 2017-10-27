@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body.has-bg {
+	background: url("http://global.timex.com/sites/default/files/Chrono-Collection-Asst-Page-Banner-EN.jpg");
+	background-size: 100%;
+  background-repeat: no-repeat;
+	width: 100%;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.clock {
+margin: 0 0 0 372px;
+position: fixed;
+display: table;
+//left: 372px;
+}
+
+
+.sub-head, p {
+font-family: 'Source Sans Pro', sans-serif;
+text-align: center;
+letter-spacing: 1.2px;
+line-height: 18px;
+color: #5a5555;
+}
+
+.sub-head {
+font-size: 22px;
+margin-bottom: 12px;
+}
+
+.head {
+	font-size: 25px;
+
+}
+
+.header {
+	margin: 0 auto;
+	display: table;
+}
+
+.story {
+	//background-color: gray;
+	display: table;
+	padding: 5px;
+  margin: 430px auto;
+	}

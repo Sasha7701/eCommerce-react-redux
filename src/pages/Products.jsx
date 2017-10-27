@@ -1,12 +1,14 @@
 import "./Products.scss";
+// import { Grid, Rating } from "semantic-ui-react";
 import React, { Component } from "react";
 // import PRODUCTS from "json/products.json";
 import Loader from "components/Loader.jsx";
 import { getAll } from "actions/products";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-class Gallery extends Component {
+class Products extends Component {
 	componentDidMount() {
 		this.props.getAll();
 	}
@@ -24,31 +26,54 @@ class Gallery extends Component {
 
 		else {
 			content = (
-
-				<div className = "Products">
+				// <Grid centered>
+				// <Grid.Column width={6}>
+				<div className = "products">
 					{products.map((product) => {
 						return [
-							<div className = "item">
+							<div className = "items">
+								<h3 className = "product-name"> {product.name}</h3>
 								<Link key = {product.id} to= {`/product/${product.id}`}>
-									<h3 className = "gallery-name"> {product.name}</h3>
-									<img className= "gallery-image-main" src= {product.image.medium}/>
-								</Link>
-										 <div className= "product-image">
-											 <img className= "product-image" src= {product.image.small}/>
-										 <h3 className= "price"> ${product.price}</h3>
-										 </div>
+									<img className= "product-image-main" src= {product.image.medium}/>
+										 </Link>
+											 <p className= "product-rating">Rating: {product.rating} out of 10</p>
+										 <h3 className= "product-price"> ${product.price}</h3>
+										 {/* </div> */}
 									 </div>];
 					})}
 				</div>
+				// {/* </Grid.Column> */}
+			//	{/* </Grid> */}
 			);
 		}
 		return (
-			<div className="Products">
+			<div className="products">
 				{ content }
 			</div>
 		);
 	}
 }
+
+Products.propTypes = {
+	products: PropTypes.arrayOf
+	(PropTypes.shape({
+		id: PropTypes.number,
+		name: PropTypes.string,
+		price: PropTypes.string,
+		rating: PropTypes.number,
+		image: PropTypes.shape({
+			small: PropTypes.string,
+			medium : PropTypes.string,
+			large : PropTypes.string,
+			original : PropTypes.string,
+		}),
+	})).isRequired,
+	isLoading: PropTypes.bool,
+	error: PropTypes.string,
+
+	// Actions
+	getAll: PropTypes.func.isRequired,
+};
 
 
 // Connect state to INITIAL_STATE of products reducer
@@ -60,7 +85,7 @@ function mapStateToProps(state, props) {
 	};
 }
 
-export default connect(mapStateToProps, { getAll }) (Gallery);
+export default connect(mapStateToProps, { getAll }) (Products);
 // class Products extends Component {
 // 	componentDidMount() {
 // 		this.props.getAll();

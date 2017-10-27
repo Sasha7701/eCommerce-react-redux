@@ -1,6 +1,6 @@
 .Nav {
 	text-align: center;
-	padding: 20px;
+	padding: 20px 20px 20px 67px;;
 	margin-bottom: 15px;
 	background: #EAEAEA;
 	border-bottom: 1px solid #000;
@@ -26,7 +26,9 @@
   	display: inherit;
     float: right;
     position: relative;
+		bottom: 10px;
  }
+
 .count {
 	font-size: 15px;
 	float: right;

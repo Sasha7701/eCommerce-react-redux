@@ -1,5 +1,5 @@
+import "./Loader.scss";
 import React from "react";
-
 
 
 
