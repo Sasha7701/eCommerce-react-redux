@@ -1,37 +1,38 @@
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
 .item {
+	margin: 0 auto;
 	padding: 20px;
 }
 .specs {
-  display: inline-table;
+// width: 550px;
+font-size: 10px;
+padding: 10px;
+margin-top: 35px;
+float: right;
+border-left: 1px solid #dcdcdc;
+}
 
-  font-size: 12px;
+.spec {
+margin: 8px;
 }
-.label {
-	display: table-cell;
-  font-size: 12px;
-	font-weight: bold;
-}
-.value {
-	display: table-cell;
+
+.desc {
+	font-size: 18px;
+	text-align: justify;
+	margin: 10px;
+	color: #808080;
 }
 
 .watch-name {
 	font-size: 25px;
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
+	color: #808080;
 }
 
-// .item-image {
-// 	display: table;
-//
-// 	padding: 5px;
-//   margin: auto;
-// }
-
-// .img {
-// 	height: 400px;
-//    cursor:zoom-in;
-// }
 .item-image{
 				display: inline-flex;
 				overflow: hidden;
@@ -49,16 +50,47 @@ cursor:zoom-in;
             }
 					}
 }
-.description {
+.text {
 	// display: block;
+  font-size: 15px;
+	font-weight: bold;
 	letter-spacing: 0.02em;
 	width: 420px;
 	line-height: 1.4em;
-  // margin: 55px auto;
+	color: #808080;
 }
 
-.text {
+.category {
+	font-size: 20px;
+	font-weight: lighter;
+	color: #808080;
+}
+
+.item-price {
+	color: #808080;
+	font-size: 18px;
+	text-align: right;
+
+}
+
+.description {
 	display: table;
-	margin: 55px auto;
+	margin: 45px auto;
   padding: 10px;
+}
+
+.addToCart {
+    padding:5px 10px;
+    background:#d20c02;
+    border:0 none;
+    cursor:pointer;
+		color: #fff;
+		font-weight: bold;
+		box-shadow: 1px 1px 2px 1px #808080;
+		float: right;
+		margin-right: 45px;
+}
+
+.addToCart:hover {
+	color: #808080;
 }

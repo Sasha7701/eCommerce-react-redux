@@ -153,6 +153,10 @@ if (hasBabel) {
 		"import/no-absolute-path": SEV1,
 		"import/export": SEV1,
 		"import/no-duplicates": SEV2,
+<<<<<<< HEAD
+=======
+		// "import/prefer-default-export": SEV2,
+>>>>>>> redux
 		"import/first": SEV2,
 		"import/no-webpack-loader-syntax": SEV2,
 		"import/no-mutable-exports": SEV2,

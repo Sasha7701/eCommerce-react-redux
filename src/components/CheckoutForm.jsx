@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { submitOrder } from "actions/checkout";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 class CheckoutForm extends Component {
 	constructor(props) {
@@ -11,7 +12,7 @@ class CheckoutForm extends Component {
 				address: "",
 				city: "",
 				state: "",
-				zipcode: "",
+				zipCode: "",
 				error: null,
 			};
 		}
@@ -24,13 +25,13 @@ class CheckoutForm extends Component {
 
 	_handleSubmit = (ev) => {
 		ev.preventDefault();
-const { cart, cartTotal } = this.props;
+		const { cart, cartCount } = this.props;
 		this.props.submitOrder(this.state);
 	}
 
 	render() {
 		const { name, address, zipCode, city, state, value  } = this.state;
-		const { error, orderSuccess, orderFailure, cart, cartCount } = this.props;
+		const { cart, orderSuccess, error, orderFailure, cartCount } = this.props;
 		const options = [
 			{ key:'AL', text:'Alabama', value:'AL' },
 			{ key:'AK', text:'Alaska', value:'AK' },
@@ -98,56 +99,160 @@ const { cart, cartTotal } = this.props;
 			message = <div className = "OrderFormFailure"> { error } </div>;
 		}
 
-  		const { cartTotal } = this.props;
+  		//  const { cartCount } = this.props;
     		return (
     			<div className="checkout-form-container">
-    				<form onSubmit={this._handleSubmit}>
+    				<form onSubmit={this._handleSubmit} className="form-checkout">
     					<div className="checkout-form-fields">
     						<div className="button-field">
     							<label name="name">Name</label>
-    							<input type="text" name="name" onChange={this._handleChange} required></input>
+    							<input type="text" name="name" onChange={this._handleChange} required />
     						</div>
     						<div className="button-field">
     							<label name="address">Street address</label>
-    							<input type="text" name="address" onChange={this._handleChange} required></input>
+    							<input type="text" name="address" onChange={this._handleChange} required />
     						</div>
     						<div className="button-field">
     							<label name="city">City</label>
-    							<input type="text" name="city" onChange={this._handleChange} required></input>
+    							<input type="text" name="city" onChange={this._handleChange} required />
     						</div>
     						<div className="button-field">
     							<label name="state">State</label>
-    							<select onChange={this._handleChange} name="state" >
+    							<select onChange={this._handleChange} name="state" className="state" >
     								{options.map((states, key) => {
     									return (
-    										<option value={states.value}>{states.text}</option>
+    										<option value={states.value} >{states.text}</option>
     									);
     								})}
     							</select>
     						</div>
     						<div className="button-field">
-    							<label name="zipcode">Zip code</label>
-    							<input type="text" name="zipCode" onChange={this._handleChange} required></input>
+    							<label name="zipCode">Zip code</label>
+    							<input type="text" name="zipCode" onChange={this._handleChange} required />
     						</div>
     						<div className="button-field-submit hidden">
-    							<button type="submit" onSubmit={this._handleSubmit}>Purchase</button>
+    							<button type="submit" className="submit" onSubmit={this._handleSubmit}>Purchase</button>
     						</div>
-    					</div>
+						<div className="order-message">
+       					  { message }
+       				 </div>
+					</div>
     				</form>
     			</div>
     		);
     	}
 }
 
+CheckoutForm.propTypes = {
+	error: PropTypes.string,
+	orderSuccess: PropTypes.bool,
+	orderFailure: PropTypes.bool,
+	cart: PropTypes.arrayOf(PropTypes.shape({
+		product: PropTypes.shape({
+			id: PropTypes.number,
+			name: PropTypes.string,
+			category: PropTypes.string,
+			description: PropTypes.string,
+			rating: PropTypes.number,
+			price: PropTypes.string,
+			specs: PropTypes.arrayOf(PropTypes.shape({
+				0: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				1: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				2: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				3: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				4: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				5: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				6: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				7: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				8: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				9: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				10: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				11: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				12: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				13: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+				14: PropTypes.shape({
+					label: PropTypes.string,
+					value: PropTypes.string,
+				}),
+			})),
+			images: PropTypes.arrayOf(PropTypes.shape({
+				0: PropTypes.shape({
+					original: PropTypes.string,
+					small: PropTypes.string,
+					medium: PropTypes.string,
+					large: PropTypes.string,
+				}),
+				1: PropTypes.shape({
+					original: PropTypes.string,
+					small: PropTypes.string,
+					medium: PropTypes.string,
+					large: PropTypes.string,
+				}),
+				2: PropTypes.shape({
+					original: PropTypes.string,
+					small: PropTypes.string,
+					medium: PropTypes.string,
+					large: PropTypes.string,
+				}),
+			})),
+		}),
+	})),
+	cartCount: PropTypes.number,
+};
+
 function mapStateToProps(state, props) {
-  return {
+	return {
 		// cart: state.cart.cart,
 		// cartIds: state.cart.productIds,
-		cartTotal: state.cart.cartTotal,
-		error: state.checkout.error,
+		//cartIds: state.cart.cartIds,
+		// orderStar: state.checkout.orderStar,
 		orderSuccess: state.checkout.orderSuccess,
 		orderFailure: state.checkout.orderFailure,
 		cart: state.cart.cart,
+		error: state.checkout.error,
+    cartCount: state.cart.cartCount,
 	};
 }
 

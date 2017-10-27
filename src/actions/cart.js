@@ -1,6 +1,7 @@
+// Using product instead of productId because you already have it loaded
 
 export function addToCart(product) {
-console.log(product,'tyhetyhteyhetyhetyhjetjrt');
+	console.log(product,'=========');
 	return (dispatch) => {
 		if (product) {
 			dispatch({

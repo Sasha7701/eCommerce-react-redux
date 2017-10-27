@@ -1,15 +1,15 @@
+import "./Checkout.scss";
 import React, { Component } from "react";
 import CheckoutForm from "../components/CheckoutForm";
-import { connect } from "redux-thunk";
 
-class Checkout extends Component {
+class Success extends Component {
 	render() {
 		return (
-			<div className="App">
-				<CheckoutForm/>
+			<div className="App-checkout">
+				<CheckoutForm />
 			</div>
 		);
 	}
 }
 
-export default Checkout;
+export default Success;

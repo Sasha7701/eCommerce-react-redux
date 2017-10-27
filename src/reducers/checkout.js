@@ -4,12 +4,12 @@ const INITIAL_STATE = {
 	orderFailure: false,
 	error: null,
 
+
 };
 
 
 function checkoutReduced(state = INITIAL_STATE, action) {
 	switch (action.type) {
-
 	case "SUBMIT_ORDER_SUCCESS":
 		return {
 			...state,

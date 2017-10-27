@@ -1,0 +1,27 @@
+.fourO {
+	margin-top: 8px;
+	padding-bottom: 8px;
+	text-align: center;
+  font-size: 25px;
+  //font-weight:bold;
+ font-family: 'ABeeZee', sans-serif;
+}
+
+.link {
+text-decoration:  none;
+}
+
+.err {
+display: block;
+position: absolute;
+text-align: center;
+margin: 0, auto;
+top: 50%;
+left: 50%;
+margin-right: -50%;
+transform: translate(-50%, -50%);
+}
+
+.error {
+  color: #ec0d22;
+}
